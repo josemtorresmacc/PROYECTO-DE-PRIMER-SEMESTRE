@@ -1,7 +1,7 @@
 import pygame, sys 
 
 def pltantmon():
-    global plt_speed_x,plt_speed_y
+    global plt_speed_x,plt_speed_y #Variable que se encontró en un video tutorial de Pygame
     plt.x += plt_speed_x
     plt.y += plt_speed_y
     if plt.top <= 0 or plt.bottom >= screen_height:
@@ -25,7 +25,10 @@ def player2antmon():
         player2.top = 0
     if player2.bottom >= screen_height:
         player2.bottom = screen_height
-
+        
+#(esta acción es de la computadora donde se le dará al jugador la opción
+# de poder jugar contra la computadora; donde se le da la "inteligencia" de mover la paleta
+# en torno a "y" siguiendo la pelota
 def player2IA():
     if player2.top < plt.y:
         player2.top += IA_speed
@@ -76,8 +79,11 @@ while True:
                 player1_speed -= 7
             elif event.key == pygame.K_UP:
                 player1_speed += 7
+    #Un problema de pygame es el de hacer los ciclos y hasta no terminarlos no se puede 
+    #hacer otro por esto mismo se hacen dos "event.type"
     pltantmon()
     player1antmon()
+#    player2antmon()
     player2IA()
         
     screen.fill(bg_color)
