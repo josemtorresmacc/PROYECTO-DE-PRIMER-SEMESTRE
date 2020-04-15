@@ -29,7 +29,18 @@ def pltantmon():
     if plt.colliderect(player1) or plt.colliderect(player2):
         plt_speed_x += 1
         plt_speed_x *= -1
-
+    if marcadorj1== 10:
+        text_surface = font2.render(u'Felicidades ganaste', True, (COLOR,COLOOR,COLOOOR))
+        screen.blit(text_surface,(screen_width/2 -350 ,screen_height/2 -20))
+        pygame.display.flip()
+        time.sleep(2)
+        pygame.quit()
+    if marcadorj2ia== 10:
+        text_surface = font2.render(u"Perdiste", True, (COLOR,COLOOR,COLOOOR))
+        screen.blit(text_surface,(screen_width/2 -120 ,screen_height/2 -20))
+        pygame.display.flip()
+        time.sleep(2)
+        pygame.quit()
 def player1antmon():
     player1.y += player1_speed
     if player1.top <= 0:
@@ -63,6 +74,7 @@ def plt_restart():
 pygame.init()
 clock = pygame.time.Clock()
 font = pygame.font.Font(None, 30)
+font2= pygame.font.Font(None,100)
 
 #P4NTA/L%A
 screen_width = 1300
@@ -132,4 +144,3 @@ while True:
     
     pygame.display.flip()
     clock.tick(60)
-
