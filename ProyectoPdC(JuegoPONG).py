@@ -1,5 +1,5 @@
+import pygame, sys, random, time
 
-import pygame, sys, random
 rng=random.Random()
 COLOR= rng.randrange(0,250)
 COLOOR= rng.randrange(0,250)
@@ -13,12 +13,19 @@ def pltantmon():
     if plt.top <= 0 or plt.bottom >= screen_height:
         plt_speed_y *= -1
     if plt.left <= 0:
-        plt_restart()
         marcadorj1 += 1
-        
-    if plt.right >= screen_width:
+        text_surface = font.render(u'punto a favor', True, (COLOR,COLOOR,COLOOOR))
+        screen.blit(text_surface,(screen_width/2 + 10,screen_height/2 - 40))
+        pygame.display.flip()
+        time.sleep(2)
         plt_restart()
+    if plt.right >= screen_width:
         marcadorj2ia += 1
+        text_surface = font.render(u'punto en contra', True, (COLOR,COLOOR,COLOOOR))
+        screen.blit(text_surface,(screen_width/2 - 170,screen_height/2 + 40))
+        pygame.display.flip()
+        time.sleep(2)
+        plt_restart()
     if plt.colliderect(player1) or plt.colliderect(player2):
         plt_speed_x += 1
         plt_speed_x *= -1
@@ -55,6 +62,7 @@ def plt_restart():
 
 pygame.init()
 clock = pygame.time.Clock()
+font = pygame.font.Font(None, 30)
 
 #P4NTA/L%A
 screen_width = 1300
@@ -124,3 +132,4 @@ while True:
     
     pygame.display.flip()
     clock.tick(60)
+
