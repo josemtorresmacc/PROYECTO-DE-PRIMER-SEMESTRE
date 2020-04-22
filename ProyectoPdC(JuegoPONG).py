@@ -12,10 +12,13 @@ raiz.config(cursor="pirate")
 miframe = Frame()
 miframe.pack(side="top")
 miframe.config(bg= "blue")
-miframe.config(width="650", height="350")
+miframe.config(width="500", height="200")
 miframe.config(bd=15)
 miframe.config(relief="groove")
 miframe.config(cursor="star")
+
+milabel = Label(miframe, text="Arcademy", fg="purple", font=("Castellar", 32))
+milabel.place(x="100", y="70")
 
 raiz.mainloop()
 
