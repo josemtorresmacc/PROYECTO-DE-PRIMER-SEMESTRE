@@ -1,4 +1,23 @@
 import pygame, sys, random, time
+form tkinter import*
+raiz=Tk()
+raiz.title("Arcademy")
+raiz.iconbitmap("Joistic.ico")
+#raiz.geometry("800x650")
+raiz.config(bg="black")
+raiz.config(bd=25)
+raiz.config(relief="sunken")
+raiz.config(cursor="pirate")
+
+miframe = Frame()
+miframe.pack(side="top")
+miframe.config(bg= "blue")
+miframe.config(width="650", height="350")
+miframe.config(bd=15)
+miframe.config(relief="groove")
+miframe.config(cursor="star")
+
+raiz.mainloop()
 
 rng=random.Random()
 COLOR= rng.randrange(0,250)
