@@ -1,0 +1,39 @@
+import pygame, sys, random, time
+rng=random.Random()
+Time=time.clock()
+def juego():    
+    pygame.init()
+    campodebatalla= pygame.display.set_mode((1300,650))
+    heroe= pygame.image.load("jugador-06.png")
+    zombie= pygame.image.load("zombie0.png")
+    xzombie= rng.randrange(0,1300)
+    yzombie= rng.randrange(0,650)
+    xheroe=0
+    yheroe=0
+    campodebatalla.blit(heroe,(xheroe,yheroe))
+    campodebatalla.blit(zombie,(xzombie,yzombie))
+    while True:
+        tIme=time.clock()
+        tiNe=int((tIme-Time))
+        print(tiNe)
+        for evento in pygame.event.get():
+            xzombie= rng.randrange(0,1200)
+            yzombie= rng.randrange(0,600)
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.KEYDOWN:   
+                tecla = evento.dict["key"]
+                if tecla == 275:
+                    xheroe += 10
+                elif tecla == 273:
+                    yheroe -= 10
+                elif tecla == 276:
+                    xheroe -= 10
+                elif tecla == 274:
+                    yheroe += 10
+                campodebatalla.blit(heroe,(xheroe,yheroe))
+            if tiNe%5==0:
+                campodebatalla.blit(zombie,(xzombie,yzombie))
+        pygame.display.flip()
+juego()
