@@ -6,9 +6,14 @@ def marcador():
        text_surface = font2.render("ganaste", True, (0,0,0))
        campodebatalla.blit(text_surface,(500 ,325))
        pygame.display.flip()
-       time.sleep(3)
+       pygame.quit()
+    if  vidah== 0:
+       text_surface = font2.render("perdiste", True, (0,0,0))
+       campodebatalla.blit(text_surface,(500 ,325))
+       pygame.display.flip()
+       pygame.quit()
 def yzombieIA():
-    global yzombie,xheroe,yheroe,xzombie,zombie
+    global yzombie,xheroe,yheroe,xzombie,zombie,vidah
     if yzombie <  yheroe:
         yzombie += 1
     if yzombie >yheroe:
@@ -16,9 +21,10 @@ def yzombieIA():
     if yzombie == yheroe:
         yzombie = yzombie
     if yzombie >= 650:
-        yzombie = 650        
+        yzombie = 650   
+    
 def xzombiIA():
-    global yzombie,xheroe,yheroe,xzombie,zombie
+    global yzombie,xheroe,yheroe,xzombie,zombie,vidah
     if xzombie <  xheroe:
         xzombie += 1
     if xzombie >xheroe:
@@ -26,7 +32,13 @@ def xzombiIA():
     if xzombie == xheroe:
         xzombie = xzombie
     if xzombie >= 1300:
-        xzombie = 1300    
+        xzombie = 1300 
+def idd():
+    global yzombie,xheroe,yheroe,xzombie,zombie,vidah
+    if xzombie==xheroe  and yzombie==yheroe :
+        vidah-=1
+    
+    
 def balas():
     global xbala,ybala,angulo,bala,vidaz
     if angulo==0:
@@ -78,11 +90,12 @@ def balas():
 pygame.init()
 xheroe=100
 yheroe=100
-xzombie = 1100
-yzombie = 90
-xbala=xheroe+40
-ybala=yheroe+25
+xzombie = 600
+yzombie = 300
+xbala=xheroe+30
+ybala=yheroe
 vidaz=15
+vidah=1
 angulo=0
 campodebatalla= pygame.display.set_mode((1300,650))
 heroe= pygame.image.load("jugador-06.png")
@@ -104,13 +117,13 @@ while True:
             pygame.quit()
             sys.exit()
         if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_DOWN:
+            if evento.key == pygame.K_s:
                 yheroe += 15
-            elif evento.key == pygame.K_UP:
+            elif evento.key == pygame.K_w:
                 yheroe -= 15
-            elif evento.key == pygame.K_RIGHT:
+            elif evento.key == pygame.K_d:
                 xheroe += 15
-            elif evento.key == pygame.K_LEFT:
+            elif evento.key == pygame.K_a:
                 xheroe -= 15
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if evento.button == 3:
@@ -120,11 +133,13 @@ while True:
     marcador()
     heroe=pygame.transform.rotate(heroe, angulo)
     campodebatalla.blit(bala,(xbala+30,ybala+25))
-    balas()    
+    balas() 
     yzombieIA()
     xzombiIA()
+    idd()
     campodebatalla.blit(zombie,(xzombie,yzombie))
     campodebatalla.blit(heroe, (xheroe, yheroe))
     pygame.transform.rotate(heroe, angulo)  
     pygame.display.flip()
     clock.tick(60)
+
