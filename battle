@@ -1,6 +1,12 @@
 import pygame, sys, random, time
 rng=random.Random()
 Time=time.clock()
+def marcador():
+    if  vidaz== 0:
+       text_surface = font2.render("ganaste", True, (0,0,0))
+       campodebatalla.blit(text_surface,(500 ,325))
+       pygame.display.flip()
+       time.sleep(3)
 def yzombieIA():
     global yzombie,xheroe,yheroe,xzombie,zombie
     if yzombie <  yheroe:
@@ -10,8 +16,7 @@ def yzombieIA():
     if yzombie == yheroe:
         yzombie = yzombie
     if yzombie >= 650:
-        yzombie = 650
-        campodebatalla.blit(zombie,(xzombie,yzombie))
+        yzombie = 650        
 def xzombiIA():
     global yzombie,xheroe,yheroe,xzombie,zombie
     if xzombie <  xheroe:
@@ -21,56 +26,64 @@ def xzombiIA():
     if xzombie == xheroe:
         xzombie = xzombie
     if xzombie >= 1300:
-        xzombie = 1300
-        campodebatalla.blit(zombie,(xzombie,yzombie))
-def aheroe ():
-    global heroe
-    angulo=0
-    if evento.type == pygame.MOUSEBUTTONDOWN:
-         if evento.button == 3:
-             if angulo<=360:
-                 angulo += 90
-             else:
-                 angulo=0
-    heroe=pygame.transform.rotate(heroe, angulo)
+        xzombie = 1300    
 def balas():
-    global xbala,ybala,angulo,bala
+    global xbala,ybala,angulo,bala,vidaz
     if angulo==0:
         xbala+=10
-    elif angulo==45:
-        xbala+=10
-        ybala+=10
+        if xbala>=1300:
+            xbala=xheroe
+            ybala=yheroe
+        if xbala>=xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+            xbala=xheroe
+            ybala=yheroe
+            vidaz-=1
     elif angulo==90:
-        ybala=10
-    elif angulo ==135:
-        xbala-=10
-        ybala+=10
+        ybala-=10
+        if ybala<=0:
+            ybala=yheroe
+            xbala=xheroe 
+        if ybala<=yzombie and( xzombie<=xbala and xbala<=xzombie+40)  :
+            xbala=xheroe
+            ybala=yheroe
+            vidaz-=1
     elif angulo==180:
         xbala-=10
-    elif angulo==225:
-        xbala-=10
-        ybala-=10
+        if xbala<=0:
+            xbala=xheroe
+            ybala=yheroe
+        if xbala<=xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+            xbala=xheroe
+            ybala=yheroe
+            vidaz-=1
     elif angulo==270:
-        ybala-=10
-    elif angulo==315:
-        xbala+=10
-        ybala-=10
+        ybala+=10
+        if ybala>=650:
+            ybala=yheroe
+            xbala=xheroe 
+        if ybala>=yzombie and( xzombie<=xbala and xbala<=xzombie+40)  :
+            xbala=xheroe
+            ybala=yheroe
+            vidaz-=1
     elif angulo==360:
-        xbala+=10
-    campodebatalla.blit(bala,(xbala,ybala))    
-    
-
-            
+        xbala+=10    
+        if xbala>=1300:
+            xbala=xheroe  
+            ybala=yheroe
+        if xbala>=xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+            xbala=xheroe
+            ybala=yheroe
+            vidaz-=1
     
 pygame.init()
 xheroe=100
 yheroe=100
-xzombie = 0
-yzombie = 0
-xbala=xheroe
-ybala=yheroe
+xzombie = 1100
+yzombie = 90
+xbala=xheroe+40
+ybala=yheroe+25
+vidaz=15
 angulo=0
-w=0
 campodebatalla= pygame.display.set_mode((1300,650))
 heroe= pygame.image.load("jugador-06.png")
 zombie= pygame.image.load("zombie0.png")
@@ -78,14 +91,14 @@ bala=pygame.image.load("bala.png")
 campodebatalla.fill((250,250,250), (0,0,1300,650))
 campodebatalla.blit(zombie,(xzombie,yzombie))
 campodebatalla.blit(heroe,(xheroe,yheroe))
-campodebatalla.blit(bala,(100,100))
 clock = pygame.time.Clock()
 heroe= heroe.convert_alpha()
 pygame.display.flip()   
+font2= pygame.font.Font(None,100)
 while True:    
     tIme=time.clock()
     tiNe=int((tIme-Time))
-    campodebatalla.fill((250,250,250), (0,0,1300,650))       
+    campodebatalla.fill((250,250,250), (0,0,1300,650))  
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             pygame.quit()
@@ -99,11 +112,14 @@ while True:
                 xheroe += 15
             elif evento.key == pygame.K_LEFT:
                 xheroe -= 15
-        if evento.type== pygame.MOUSEBUTTONDOWN:
-            if evento.button==1:
-                campodebatalla.blit(bala,(xheroe,yheroe))
-            
-    aheroe()
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            if evento.button == 3:
+                angulo += 90
+                if angulo ==360:
+                    angulo=0
+    marcador()
+    heroe=pygame.transform.rotate(heroe, angulo)
+    campodebatalla.blit(bala,(xbala+30,ybala+25))
     balas()    
     yzombieIA()
     xzombiIA()
