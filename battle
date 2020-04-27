@@ -6,11 +6,13 @@ def marcador():
        text_surface = font2.render("ganaste", True, (0,0,0))
        campodebatalla.blit(text_surface,(500 ,325))
        pygame.display.flip()
+       time.sleep(3)
        pygame.quit()
     if  vidah== 0:
        text_surface = font2.render("perdiste", True, (0,0,0))
        campodebatalla.blit(text_surface,(500 ,325))
        pygame.display.flip()
+       time.sleep(3)
        pygame.quit()
 def yzombieIA():
     global yzombie,xheroe,yheroe,xzombie,zombie,vidah
