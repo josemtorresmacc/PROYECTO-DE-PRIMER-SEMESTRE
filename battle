@@ -111,5 +111,4 @@ while True:
     campodebatalla.blit(heroe, (xheroe, yheroe))
     pygame.transform.rotate(heroe, angulo)  
     pygame.display.flip()
-    pygame.display.flip()
     clock.tick(60)
