@@ -66,7 +66,7 @@ def balas():
         if xbala<=0:
             xbala=xheroe
             ybala=yheroe
-        if xbala<=xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -144,4 +144,3 @@ while True:
     pygame.transform.rotate(heroe, angulo)  
     pygame.display.flip()
     clock.tick(60)
-
