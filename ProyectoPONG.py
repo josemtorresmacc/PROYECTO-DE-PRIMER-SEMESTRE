@@ -5,6 +5,10 @@ import random
 import tkinter as tk
 from tkinter import messagebox
 
+def _P_O_N_G_():
+    global PONG
+    PONG()
+    
 wn = tk.Tk()
 wn.title("PROYECTO ARCADEMY")
 wn.configure(background="dark gray")
@@ -19,7 +23,7 @@ Etiqueta.place(x="450", y="20")
 
 opcion = tk.StringVar(wn)
 opcion.set("OPCIONES")
-opciones = ["2"]
+opciones = [_P_O_N_G_]
 opcione = tk.OptionMenu(wn, opcion, *opciones)
 opcione.pack(side="left", padx = 500,pady = 0)
 
@@ -87,12 +91,14 @@ def pltantmon():
 #        pygame.display.flip()
 #        time.sleep(1)
         pygame.exit()
+        sys.exit()
     if marcadorj2ia== 10:
 #        text_surface = font2.render(u"¡GAME OVER!", True, (COLOR,COLOOR,COLOOOR))
 #        screen.blit(text_surface,(screen_width/2 - 300 ,screen_height/2 -20))
 #        pygame.display.flip()
 #        time.sleep(1)
         pygame.exit()
+        sys.exit()
 
 def player1antmon():
     player1.y += player1_speed
