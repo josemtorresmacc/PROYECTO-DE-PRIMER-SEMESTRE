@@ -21,7 +21,7 @@ def balas1():
         if xbala>=1300:
             xbala=xheroe
             ybala=yheroe
-        if xbala>=yheroe2 and( yheroe2<=ybala and ybala<=yheroe2+40)  :
+        if xbala==xheroe2 and( yheroe2<=ybala and ybala<=yheroe2+40)  :
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -30,7 +30,7 @@ def balas1():
         if ybala<=0:
             ybala=yheroe
             xbala=xheroe 
-        if ybala<=yheroe2 and( xheroe2<=xbala and xbala<=xheroe2+40)  :
+        if ybala==yheroe2 and( xheroe2-20<=xbala and xbala<=xheroe2+40)  :
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -48,7 +48,7 @@ def balas1():
         if ybala>=650:
             ybala=yheroe
             xbala=xheroe 
-        if xbala>=xheroe2 and( yheroe2<=ybala and ybala<=yheroe2+40)  :
+        if ybala==yheroe2 and( xheroe2-40<=xbala and xbala<=xheroe2+40)  :
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -57,7 +57,7 @@ def balas1():
         if xbala>=1300:
             xbala=xheroe  
             ybala=yheroe
-        if xbala>=xheroe2 and( yheroe2<=ybala and ybala<=yheroe2+40)  :
+        if xbala==xheroe2 and( yheroe2<=ybala and ybala<=yheroe2+40)  :
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -68,7 +68,7 @@ def balas2():
         if xbala2>=1300:
             xbala2=xheroe2
             ybala2=yheroe2
-        if xbala2>=yheroe and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
+        if xbala2==xheroe and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -77,7 +77,7 @@ def balas2():
         if ybala2<=0:
             ybala2=yheroe2
             xbala2=xheroe2
-        if ybala2<=yheroe and( xheroe<=xbala2 and xbala2<=xheroe+40)  :
+        if ybala2==yheroe and( xheroe-20<=xbala2 and xbala2<=xheroe+40)  :
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -95,7 +95,7 @@ def balas2():
         if ybala2>=650:
             ybala2=yheroe2
             xbala2=xheroe2 
-        if xbala2>=xheroe and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
+        if ybala2==yheroe and( xheroe-40<=xbala2 and xbala2<=xheroe+40)  :
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -104,7 +104,7 @@ def balas2():
         if xbala2>=1300:
             xbala2=xheroe2  
             ybala2=yheroe2
-        if xbala2>=xheroe and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
+        if xbala2==xheroe and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
