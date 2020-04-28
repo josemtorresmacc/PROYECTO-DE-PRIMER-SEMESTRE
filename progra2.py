@@ -29,14 +29,14 @@ def pltantmon():
     if plt.colliderect(player1) or plt.colliderect(player2):
         plt_speed_x += 1
         plt_speed_x *= -1
-    if marcadorj1== 3:
+    if marcadorj1== 10:
         text_surface = font2.render(u'FELICIDADES GANASTE JUGADOR 1', True, ligth_grey)
         screen.blit(text_surface,(screen_width/2 -500 ,screen_height/2 -20))
         pygame.display.flip()
         b= time.sleep(2)
         b
         pygame.quit()
-    if marcadorj2ia== 1:
+    if marcadorj2ia== 10:
         b=0
         text_surface = font2.render(u"FELICIDADES GANASTE JUGADOR 2", True, ligth_grey)
         screen.blit(text_surface,(screen_width/2 -500 ,screen_height/2 -20))
