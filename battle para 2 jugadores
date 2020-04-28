@@ -127,7 +127,7 @@ heroe= pygame.image.load("jugador-06.png")
 heroe2= pygame.image.load("jugador-02.png")
 bala=pygame.image.load("bala.png")
 bala2=pygame.image.load("bala.png")
-campodebatalla.fill((250,250,250), (0,0,1300,650))
+campodebatalla.fill((128,64,0), (0,0,1300,650))
 campodebatalla.blit(heroe2,(xheroe2,yheroe2))
 campodebatalla.blit(heroe,(xheroe,yheroe))
 clock = pygame.time.Clock()
@@ -137,7 +137,7 @@ font2= pygame.font.Font(None,100)
 while True:    
     tIme=time.clock()
     tiNe=int((tIme-Time))
-    campodebatalla.fill((250,250,250), (0,0,1300,650))  
+    campodebatalla.fill((125,64,0), (0,0,1300,650))  
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             pygame.quit()
