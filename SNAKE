@@ -1,0 +1,51 @@
+import pygame, sys, time, random
+from pygame.locals import *
+
+pygame.init
+play_surface = pygame.display.set_mode((500, 500))
+fps = pygame.time.Clock()
+
+def main ():
+    snake_pos = [100,50]
+    snake_body = [[100,500], [90,50], [80,50]]
+    direction = "RIGHT"
+    change = direction 
+    
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    change = "RIGHT"
+                if event.key == pygame.K_LEFT:
+                    change = "LEFT"
+                if event.key == pygame.K_UP:
+                    change = "UP"
+                if event.key == pygame.K_DOWN:
+                    change == "DOWN"
+        
+        if change == "RIGHT" and direction != "LEFT":
+            direction = "RIGHT"
+        if change == "LEFT" and direction != "RIGHT":
+            direction = "LEFT"
+        if change == "UP" and direction != "DOWN":
+            direction = "UP"
+        if change == "DOWN" and direction != "UP":
+            direction = "DOWN"   
+            
+                
+                
+                
+        play_surface.fill((0,0,0))
+        
+        for posicion in snake_body:
+            pygame.drw.rect(play_surface, (200,200,200), pygame.Rect(posicion[0], posicion[1], 10, 10))
+        
+        pygame.display.flip()
+        fps.tick(10)
+        
+main()
+pygame.quit()
