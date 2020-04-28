@@ -74,7 +74,7 @@ def main ():
             print("Game over! Score:{0}".format(score))
             run = False
             
-        if snake_pos == snake_body[1:]:
+        if snake_pos in snake_body[1:]:
             print("Game over! Score:{0}".format(score))
             run = False
             
