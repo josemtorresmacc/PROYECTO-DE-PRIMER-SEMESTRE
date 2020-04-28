@@ -48,7 +48,7 @@ def balas():
         if xbala>=1300:
             xbala=xheroe
             ybala=yheroe
-        if xbala>=xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -57,7 +57,7 @@ def balas():
         if ybala<=0:
             ybala=yheroe
             xbala=xheroe 
-        if ybala<=yzombie and( xzombie<=xbala and xbala<=xzombie+40)  :
+        if ybala==yzombie and( xzombie-20<=xbala and xbala<=xzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -75,7 +75,7 @@ def balas():
         if ybala>=650:
             ybala=yheroe
             xbala=xheroe 
-        if ybala>=yzombie and( xzombie<=xbala and xbala<=xzombie+40)  :
+        if ybala==yzombie and( xzombie-20<=xbala and xbala<=xzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -84,7 +84,7 @@ def balas():
         if xbala>=1300:
             xbala=xheroe  
             ybala=yheroe
-        if xbala>=xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if xbala==xzombie and( yzombie-40<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -103,7 +103,7 @@ campodebatalla= pygame.display.set_mode((1300,650))
 heroe= pygame.image.load("jugador-06.png")
 zombie= pygame.image.load("zombie0.png")
 bala=pygame.image.load("bala.png")
-campodebatalla.fill((250,250,250), (0,0,1300,650))
+campodebatalla.fill((45,87,44), (0,0,1300,650))
 campodebatalla.blit(zombie,(xzombie,yzombie))
 campodebatalla.blit(heroe,(xheroe,yheroe))
 clock = pygame.time.Clock()
@@ -113,7 +113,7 @@ font2= pygame.font.Font(None,100)
 while True:    
     tIme=time.clock()
     tiNe=int((tIme-Time))
-    campodebatalla.fill((250,250,250), (0,0,1300,650))  
+    campodebatalla.fill((45,87,44), (0,0,1300,650))  
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             pygame.quit()
@@ -144,3 +144,4 @@ while True:
     pygame.transform.rotate(heroe, angulo)  
     pygame.display.flip()
     clock.tick(60)
+
