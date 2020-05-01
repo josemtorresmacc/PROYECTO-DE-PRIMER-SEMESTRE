@@ -1,7 +1,16 @@
 import pygame, sys, random, time
 rng=random.Random()
 Time=time.clock()
-def marcador():
+xheroe=100
+yheroe=100
+xzombie = 600
+yzombie = 300
+xbala=xheroe+30
+ybala=yheroe
+vidaz=15
+vidah=1
+angulo=0
+def marcador(font2,campodebatalla,vidaz):
     if  vidaz== 0:
        text_surface = font2.render("ganaste", True, (0,0,0))
        campodebatalla.blit(text_surface,(500 ,325))
@@ -48,7 +57,7 @@ def balas():
         if xbala>=1300:
             xbala=xheroe
             ybala=yheroe
-        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if xbala==xzombie and( yzombie-40<=ybala and ybala<=yzombie+60)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -84,64 +93,53 @@ def balas():
         if xbala>=1300:
             xbala=xheroe  
             ybala=yheroe
-        if xbala==xzombie and( yzombie-40<=ybala and ybala<=yzombie+40)  :
+        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+60)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
-    
-pygame.init()
-xheroe=100
-yheroe=100
-xzombie = 600
-yzombie = 300
-xbala=xheroe+30
-ybala=yheroe
-vidaz=15
-vidah=1
-angulo=0
-campodebatalla= pygame.display.set_mode((1300,650))
-heroe= pygame.image.load("jugador-06.png")
-zombie= pygame.image.load("zombie0.png")
-bala=pygame.image.load("bala.png")
-campodebatalla.fill((45,87,44), (0,0,1300,650))
-campodebatalla.blit(zombie,(xzombie,yzombie))
-campodebatalla.blit(heroe,(xheroe,yheroe))
-clock = pygame.time.Clock()
-heroe= heroe.convert_alpha()
-pygame.display.flip()   
-font2= pygame.font.Font(None,100)
-while True:    
-    tIme=time.clock()
-    tiNe=int((tIme-Time))
-    campodebatalla.fill((45,87,44), (0,0,1300,650))  
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_s:
-                yheroe += 15
-            elif evento.key == pygame.K_w:
-                yheroe -= 15
-            elif evento.key == pygame.K_d:
-                xheroe += 15
-            elif evento.key == pygame.K_a:
-                xheroe -= 15
-        if evento.type == pygame.MOUSEBUTTONDOWN:
-            if evento.button == 3:
-                angulo += 90
-                if angulo ==360:
-                    angulo=0
-    marcador()
-    heroe=pygame.transform.rotate(heroe, angulo)
-    campodebatalla.blit(bala,(xbala+30,ybala+25))
-    balas() 
-    yzombieIA()
-    xzombiIA()
-    idd()
+def juego ():
+    global yzombie,xheroe,yheroe,xzombie,zombie,vidah,angulo
+    pygame.init()
+    campodebatalla= pygame.display.set_mode((1300,650))
+    heroe= pygame.image.load("jugador-06.png")
+    zombie= pygame.image.load("zombie0.png")
+    bala=pygame.image.load("bala.png")
+    campodebatalla.fill((45,87,44), (0,0,1300,650))
     campodebatalla.blit(zombie,(xzombie,yzombie))
-    campodebatalla.blit(heroe, (xheroe, yheroe))
-    pygame.transform.rotate(heroe, angulo)  
-    pygame.display.flip()
-    clock.tick(60)
-
+    campodebatalla.blit(heroe,(xheroe,yheroe))
+    clock = pygame.time.Clock()
+    pygame.display.flip()   
+    font2= pygame.font.Font(None,100)
+    while True:    
+        campodebatalla.fill((45,87,44), (0,0,1300,650))  
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_s:
+                    yheroe += 15
+                elif evento.key == pygame.K_w:
+                    yheroe -= 15
+                elif evento.key == pygame.K_d:
+                    xheroe += 15
+                elif evento.key == pygame.K_a:
+                    xheroe -= 15
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if evento.button == 3:
+                    angulo += 90
+                    if angulo ==360:
+                        angulo=0
+        marcador(font2,campodebatalla,vidaz)
+        heroe=pygame.transform.rotate(heroe, angulo)
+        campodebatalla.blit(bala,(xbala+30,ybala+25))
+        balas() 
+        yzombieIA()
+        xzombiIA()
+        idd()
+        campodebatalla.blit(zombie,(xzombie,yzombie))
+        campodebatalla.blit(heroe, (xheroe, yheroe))
+        pygame.transform.rotate(heroe, angulo)  
+        pygame.display.flip()
+        clock.tick(60)
+juego()
