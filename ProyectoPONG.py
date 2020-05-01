@@ -33,7 +33,7 @@ wn.mainloop()
 screen_width = 1300
 screen_height = 650
 screen = pygame.display.set_mode((screen_width,screen_height))
-pygame.display.set_caption("PONG")
+pygame.display.set_caption("PROYECTO ARCADEMY")
    
         # RECTANGULOS DE JUEGO 
 plt = pygame.Rect(screen_width/2 - 20, screen_height/2 - 20, 40, 40)
@@ -48,9 +48,6 @@ player2_speed = 0
 IA_speed = 7
 marcadorj1 = 0
 marcadorj2ia = 0
-
-#font = pygame.font.Font("freesansbold.ttf", 30)
-#font2= pygame.font.Font("freesansbold.ttf",80)
 
     # APARTADO DE COLORES DE LAS
     # BIBLIOTECAS RANDOM Y PYGAME
@@ -90,6 +87,13 @@ def player1antmon(): #SE DEFINEN LOS LÍMITES DE LAS PALETAS, ES DECIR, LAS PALE
         player1.top = 0
     if player1.bottom >= screen_height:
         player1.bottom = screen_height
+        
+def player2antmon(): #SE DEFINEN LOS LÍMITES DE LAS PALETAS, ES DECIR LA PALETA DEL JUGADOR 2 NO VA A PASAR DE LOS BORDES DE LA PANTALLA
+    player2.y += player2_speed
+    if player2.top <= 0:
+        player2.top = 0
+    if player2.bottom >= screen_height:
+        player2.bottom = screen_height
 
 def player2IA(): #SE DEFINE EL MOVIMIENTO DE LA "MÁQUINA" LA CUAL SIGUE LA PELATA EN EL EJE y
     #SE DEFINEN LOS LÍMITES DE LAS PALETAS, ES DECIR LA PALETA DEL JUGADOR 2 NO VA A PASAR DE LOS BORDES DE LA PANTALLA
@@ -157,3 +161,65 @@ def PONG(): #INICIO DEL JUEGO PONG
         
         pygame.display.flip()
         clock.tick(60) 
+        
+def PONG2P(): #INICIO DEL JUEGO PONG
+    global screen_height, screen_width
+    pygame.init()
+    clock = pygame.time.Clock()
+    
+    fuente = pygame.font.Font("freesansbold.ttf",20)
+        
+    #CICLO REPETIRIVO DEL JUEGO
+    while True:
+        global player1_speed, player2_speed
+        for event in pygame.event.get():
+            COLOR= rng.randrange(0,250)
+            COLOOR= rng.randrange(0,250)
+            COLOOOR=rng.randrange(0,250)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_DOWN:
+                    player1_speed += 7
+                elif event.key == pygame.K_UP:
+                    player1_speed -= 7
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_DOWN:
+                    player1_speed -= 7
+                elif event.key == pygame.K_UP:
+                    player1_speed += 7 
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w:
+                    player2_speed += 7
+                elif event.key == pygame.K_s:
+                    player2_speed -= 7
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_w:
+                    player2_speed -= 7
+                elif event.key == pygame.K_s:
+                    player2_speed += 7
+                    
+        # SE LLAMAN A LASFUCIONES 
+        pltantmon()
+        player1antmon()
+        player2antmon()
+        
+        #SE COMIENZA A DIBUJAR EN PANTALLA 
+        screen.fill(bg_color)
+        pygame.draw.polygon(screen,(COLOR,COLOOR,COLOOOR),[(40,325),(650,0),(1260,325),(650,650)],3)
+        pygame.draw.rect(screen,ligth_grey,player1)
+        pygame.draw.rect(screen,ligth_grey,player2) 
+        pygame.draw.ellipse(screen,white,plt)
+        pygame.draw.aaline(screen,white,(screen_width/2,0),(screen_width/2,screen_height))
+    
+        #SE DIBUJA EL MARCADOR 
+        Jugador_1 = fuente.render(str(marcadorj1),True,ligth_grey)
+        screen.blit(Jugador_1,(screen_width/2 + 20,screen_height/2))
+        #SE DIBUJA EL MARCADOR 
+        Jugador_2_ia = fuente.render(str(marcadorj2ia),True,ligth_grey)
+        screen.blit(Jugador_2_ia,(screen_width/2 - 30,screen_height/2))
+        
+        pygame.display.flip()
+        clock.tick(60) 
+
