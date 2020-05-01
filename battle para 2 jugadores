@@ -1,8 +1,20 @@
-import pygame, sys, random, time
+import pygame, sys, random,time
 rng=random.Random()
 Time=time.clock()
-def marcador():
-    if  vida2== 0:
+xheroe=100
+yheroe=100
+xheroe2 = 600
+yheroe2 = 300
+xbala2=xheroe2+30
+ybala2=yheroe2
+xbala=xheroe+30
+ybala=yheroe
+vida2=1
+vida1=1
+angulo1=0
+angulo2=180
+def marcador(font2,campodebatalla,vida1,vida2):
+    if vida2== 0:
        text_surface = font2.render("ganaste jugador 1", True, (0,0,0))
        campodebatalla.blit(text_surface,(500 ,325))
        pygame.display.flip()
@@ -15,7 +27,7 @@ def marcador():
        time.sleep(3)
        pygame.quit()    
 def balas1():
-    global xbala,ybala,angulo1,bala,vida2
+    global xbala,ybala,angulo1,bala2,vida2,xheroe2,xheroe,yheroe2,yheroe
     if angulo1==0:
         xbala+=10
         if xbala>=1300:
@@ -62,7 +74,8 @@ def balas1():
             ybala=yheroe
             vida2-=1
 def balas2():
-    global xbala2,ybala2,angulo2,bala2,vida1
+    global xbala2,ybala2,angulo2,bala2,vida1,xheroe2,xheroe,yheroe2,yheroe
+   
     if angulo2==0:
         xbala2+=10
         if xbala2>=1300:
@@ -108,78 +121,65 @@ def balas2():
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
-    
-pygame.init()
-xheroe=100
-yheroe=100
-xheroe2 = 600
-yheroe2 = 300
-xbala2=xheroe2+30
-ybala2=yheroe2
-xbala=xheroe+30
-ybala=yheroe
-vida2=1
-vida1=1
-angulo1=0
-angulo2=180
-campodebatalla= pygame.display.set_mode((1300,650))
-heroe= pygame.image.load("jugador-06.png")
-heroe2= pygame.image.load("jugador-02.png")
-bala=pygame.image.load("bala.png")
-bala2=pygame.image.load("bala.png")
-campodebatalla.fill((128,64,0), (0,0,1300,650))
-campodebatalla.blit(heroe2,(xheroe2,yheroe2))
-campodebatalla.blit(heroe,(xheroe,yheroe))
-clock = pygame.time.Clock()
-heroe= heroe.convert_alpha()
-pygame.display.flip()   
-font2= pygame.font.Font(None,100)
-while True:    
-    tIme=time.clock()
-    tiNe=int((tIme-Time))
-    campodebatalla.fill((125,64,0), (0,0,1300,650))  
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_s:
-                yheroe += 15
-            elif evento.key == pygame.K_w:
-                yheroe -= 15
-            elif evento.key == pygame.K_d:
-                xheroe += 15
-            elif evento.key == pygame.K_a:
-                xheroe -= 15
-            elif evento.key == pygame.K_e:
-                angulo1 += 90
-                if angulo1 ==360:
-                    angulo1=0
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_DOWN:
-                yheroe2 += 15
-            elif evento.key == pygame.K_UP:
-                yheroe2 -= 15
-            elif evento.key == pygame.K_RIGHT:
-                xheroe2 += 15
-            elif evento.key == pygame.K_LEFT:
-                xheroe2 -= 15
-            elif evento.key == pygame.K_n:
-                angulo2 += 90
-                if angulo2 ==360:
-                    angulo2=0
-       
-        
-    
-    marcador()
-    heroe=pygame.transform.rotate(heroe, angulo1)
-    heroe2=pygame.transform.rotate(heroe2, angulo2)
-    campodebatalla.blit(bala,(xbala2+30,ybala2+25))
-    campodebatalla.blit(bala,(xbala+30,ybala+25))
-    balas1() 
-    balas2()
+            
+def juego():
+    global xbala2,ybala2,angulo2,vida1,xheroe2,xheroe,yheroe2,yheroe,angulo1,xbala1,ybala1,angulo1
+    pygame.init()
+    campodebatalla= pygame.display.set_mode((1300,650))
+    heroe= pygame.image.load("jugador-06.png")
+    heroe2= pygame.image.load("jugador-02.png")
+    bala=pygame.image.load("bala.png")
+    bala2=pygame.image.load("bala.png")
+    campodebatalla.fill((128,64,0), (0,0,1300,650))
     campodebatalla.blit(heroe2,(xheroe2,yheroe2))
-    campodebatalla.blit(heroe, (xheroe, yheroe))
-    pygame.display.flip()
-    clock.tick(60)
-
+    campodebatalla.blit(heroe,(xheroe,yheroe))
+    clock = pygame.time.Clock()
+    pygame.display.flip()   
+    font2= pygame.font.Font(None,100)
+    while True:    
+        campodebatalla.fill((125,64,0), (0,0,1300,650))  
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_s:
+                    yheroe += 15
+                elif evento.key == pygame.K_w:
+                    yheroe -= 15
+                elif evento.key == pygame.K_d:
+                    xheroe += 15
+                elif evento.key == pygame.K_a:
+                    xheroe -= 15
+                elif evento.key == pygame.K_e:
+                    angulo1 += 90
+                    if angulo1 ==360:
+                        angulo1=0
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_DOWN:
+                    yheroe2 += 15
+                elif evento.key == pygame.K_UP:
+                    yheroe2 -= 15
+                elif evento.key == pygame.K_RIGHT:
+                    xheroe2 += 15
+                elif evento.key == pygame.K_LEFT:
+                    xheroe2 -= 15
+                elif evento.key == pygame.K_n:
+                    angulo2 += 90
+                    if angulo2 ==360:
+                        angulo2=0
+           
+            
+        
+        marcador(font2,campodebatalla,vida1,vida2)
+        heroe=pygame.transform.rotate(heroe, angulo1)
+        heroe2=pygame.transform.rotate(heroe2, angulo2)
+        campodebatalla.blit(bala,(xbala2+30,ybala2+25))
+        campodebatalla.blit(bala,(xbala+30,ybala+25))
+        balas1() 
+        balas2()
+        campodebatalla.blit(heroe2,(xheroe2,yheroe2))
+        campodebatalla.blit(heroe, (xheroe, yheroe))
+        pygame.display.flip()
+        clock.tick(60)
+juego()
