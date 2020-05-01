@@ -1,6 +1,13 @@
-import pygame, sys, random, time
+import pygame
+import sys 
+import random
+import time 
+
+#SE INVOCAN LAS LIBRERIAS 
 rng=random.Random()
 Time=time.clock()
+
+#SE DEVINEN LAS VAIRABLES 
 xheroe=100
 yheroe=100
 xzombie = 600
@@ -10,7 +17,10 @@ ybala=yheroe
 vidaz=15
 vidah=1
 angulo=0
-def marcador(font2,campodebatalla,vidaz):
+screen_width = 1300
+screen_height = 650
+#ACÁ COMIENZAN LAS DEFINICIONES
+def INDICADOR(font2,campodebatalla,vidaz): #SIRVE PARA QUE AL FINAL DEL JUEGO SE IMPRIMA EN PANTALLA EL RESULTADO FINAL EL CUAL PUEDE SER QUE HAYAS GANADO O PERDIDO
     if  vidaz== 0:
        text_surface = font2.render("ganaste", True, (0,0,0))
        campodebatalla.blit(text_surface,(500 ,325))
@@ -23,7 +33,8 @@ def marcador(font2,campodebatalla,vidaz):
        pygame.display.flip()
        time.sleep(3)
        pygame.quit()
-def yzombieIA():
+       
+def yzombieIA(): #SE DEFINE EL MOVIMIENTO DEL ZOMBIE EN EL EJE y, ES DECIR, ESTE VA A SEGUIR AL HEROE EN ESTE EJE
     global yzombie,xheroe,yheroe,xzombie,zombie,vidah
     if yzombie <  yheroe:
         yzombie += 1
@@ -34,7 +45,7 @@ def yzombieIA():
     if yzombie >= 650:
         yzombie = 650   
     
-def xzombiIA():
+def xzombiIA():#SE DEFINE EL MOVIMIENTO DEL ZOMBIE EN EL EJE x, ES DECIR, ESTE VA A SEGUIR AL HEROE EN ESTE EJE
     global yzombie,xheroe,yheroe,xzombie,zombie,vidah
     if xzombie <  xheroe:
         xzombie += 1
@@ -44,15 +55,16 @@ def xzombiIA():
         xzombie = xzombie
     if xzombie >= 1300:
         xzombie = 1300 
-def idd():
+        
+def idd():#ES PARA QUE LA VIDA DEL HEROE BAJE CADA VEZ QUE EL ZOMBIE LO TOCA
     global yzombie,xheroe,yheroe,xzombie,zombie,vidah
     if xzombie==xheroe  and yzombie==yheroe :
         vidah-=1
     
     
-def balas():
+def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QUE TOQUE AL ZOMBIE LE BAJE VIDA
     global xbala,ybala,angulo,bala,vidaz
-    if angulo==0:
+    if angulo==0: #ESTA CONDICION ES CUANDO EL ANGULO ES = 0
         xbala+=10
         if xbala>=1300:
             xbala=xheroe
@@ -61,7 +73,7 @@ def balas():
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
-    elif angulo==90:
+    elif angulo==90:#ESTA CONDICION ES CUANDO EL ANGULO ES = 90
         ybala-=10
         if ybala<=0:
             ybala=yheroe
@@ -70,7 +82,7 @@ def balas():
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
-    elif angulo==180:
+    elif angulo==180:#ESTA CONDICION ES CUANDO EL ANGULO ES = 180
         xbala-=10
         if xbala<=0:
             xbala=xheroe
@@ -79,7 +91,7 @@ def balas():
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
-    elif angulo==270:
+    elif angulo==270:#ESTA CONDICION ES CUANDO EL ANGULO ES = 270
         ybala+=10
         if ybala>=650:
             ybala=yheroe
@@ -88,7 +100,7 @@ def balas():
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
-    elif angulo==360:
+    elif angulo==360:#ESTA CONDICION ES CUANDO EL ANGULO ES = 360
         xbala+=10    
         if xbala>=1300:
             xbala=xheroe  
@@ -97,25 +109,32 @@ def balas():
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
-def juego ():
-    global yzombie,xheroe,yheroe,xzombie,zombie,vidah,angulo
+            
+def juego ():#ACÁ COMIENZA EL JUEGO 
+    global yzombie,xheroe,yheroe,xzombie,zombie,vidah,angulo,screen_height,screen_width
     pygame.init()
-    campodebatalla= pygame.display.set_mode((1300,650))
-    heroe= pygame.image.load("jugador-06.png")
-    zombie= pygame.image.load("zombie0.png")
-    bala=pygame.image.load("bala.png")
-    campodebatalla.fill((45,87,44), (0,0,1300,650))
+    
+    campodebatalla = pygame.display.set_mode((screen_width,screen_height))#SE DEFINE EL TAMAÑO DE LA PANTALLA
+    heroe= pygame.image.load("jugador-06.png")#IMAGEN DEL JUGADOR EL CUAL SERÁ EL HEROE 
+    zombie= pygame.image.load("zombie0.png")#IMAGEN DEL ZOMBIE EL CUAL SERÁ EL ENEMIGO
+    bala=pygame.image.load("bala.png")#IMAGEN DEL PROYECTIL
+    
+    #SE IMPRIME EN PANTALLA
+    campodebatalla.fill((45,87,44), (0,0,1300,650))#COLOR DEL BACKGROUND
     campodebatalla.blit(zombie,(xzombie,yzombie))
     campodebatalla.blit(heroe,(xheroe,yheroe))
     clock = pygame.time.Clock()
     pygame.display.flip()   
     font2= pygame.font.Font(None,100)
+    
+    #CICLO REPETITIVO DEL VIDEOJUEGO
     while True:    
         campodebatalla.fill((45,87,44), (0,0,1300,650))  
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            #SE TIENEN EN CUENTA LOS EVENTOS QUE OCURREN EN EL TECLADO Y MOUSE
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_s:
                     yheroe += 15
@@ -130,16 +149,22 @@ def juego ():
                     angulo += 90
                     if angulo ==360:
                         angulo=0
-        marcador(font2,campodebatalla,vidaz)
+        #SE REEIMPRIMEN LAS IMÁGENES               
+        INDICADOR(font2,campodebatalla,vidaz)
         heroe=pygame.transform.rotate(heroe, angulo)
         campodebatalla.blit(bala,(xbala+30,ybala+25))
+        
+        #SE LLAMAN A LAS FUNCIONES QUE CREAN LOS MOVIMIENTOS 
         balas() 
         yzombieIA()
         xzombiIA()
         idd()
+        
         campodebatalla.blit(zombie,(xzombie,yzombie))
         campodebatalla.blit(heroe, (xheroe, yheroe))
+        #SE ROTA LA IMAGEN DEL JUGADOR 
         pygame.transform.rotate(heroe, angulo)  
+        
         pygame.display.flip()
         clock.tick(60)
 juego()
