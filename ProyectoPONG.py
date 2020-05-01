@@ -91,14 +91,8 @@ def player1antmon(): #SE DEFINEN LOS LÍMITES DE LAS PALETAS, ES DECIR, LAS PALE
     if player1.bottom >= screen_height:
         player1.bottom = screen_height
 
-def player2antmon(): #SE DEFINEN LOS LÍMITES DE LAS PALETAS, ES DECIR LA PALETA DEL JUGADOR 2 NO VA A PASAR DE LOS BORDES DE LA PANTALLA
-    player2.y += player2_speed
-    if player2.top <= 0:
-        player2.top = 0
-    if player2.bottom >= screen_height:
-        player2.bottom = screen_height
-
 def player2IA(): #SE DEFINE EL MOVIMIENTO DE LA "MÁQUINA" LA CUAL SIGUE LA PELATA EN EL EJE y
+    #SE DEFINEN LOS LÍMITES DE LAS PALETAS, ES DECIR LA PALETA DEL JUGADOR 2 NO VA A PASAR DE LOS BORDES DE LA PANTALLA
     if player2.top < plt.y:
         player2.top += IA_speed
     if player2.bottom > plt.y:
