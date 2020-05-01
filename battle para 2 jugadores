@@ -1,6 +1,13 @@
-import pygame, sys, random,time
+iimport pygame
+import sys
+import random
+import time
+
+#SE INVOCAN LAS LIBRERIAS 
 rng=random.Random()
 Time=time.clock()
+
+#SE DEVINEN LAS VAIRABLES 
 xheroe=100
 yheroe=100
 xheroe2 = 600
@@ -13,6 +20,8 @@ vida2=1
 vida1=1
 angulo1=0
 angulo2=180
+
+#ACÁ COMIENZAN LAS DEFINICIONES
 def marcador(font2,campodebatalla,vida1,vida2):
     if vida2== 0:
        text_surface = font2.render("ganaste jugador 1", True, (0,0,0))
@@ -25,8 +34,9 @@ def marcador(font2,campodebatalla,vida1,vida2):
        campodebatalla.blit(text_surface,(500 ,325))
        pygame.display.flip()
        time.sleep(3)
-       pygame.quit()    
-def balas1():
+       pygame.quit()   
+    
+def balas1(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QUE TOQUE JUAGADOR 2 hHACE QUE ESTE MUERA AL INSTANTE ENTRE TERRIBE DOLOR Y SUFRIMIENTO  
     global xbala,ybala,angulo1,bala2,vida2,xheroe2,xheroe,yheroe2,yheroe
     if angulo1==0:
         xbala+=10
@@ -73,7 +83,8 @@ def balas1():
             xbala=xheroe
             ybala=yheroe
             vida2-=1
-def balas2():
+            
+def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QUE TOQUE JUAGADOR 1 hHACE QUE ESTE MUERA AL INSTANTE ENTRE TERRIBE DOLOR Y SUFRIMIENTO 
     global xbala2,ybala2,angulo2,bala2,vida1,xheroe2,xheroe,yheroe2,yheroe
    
     if angulo2==0:
@@ -122,9 +133,10 @@ def balas2():
             ybala2=yheroe2
             vida1-=1
             
-def juego():
-    global xbala2,ybala2,angulo2,vida1,xheroe2,xheroe,yheroe2,yheroe,angulo1,xbala1,ybala1,angulo1
+def juego():#ACÁ INICIA EL JUEGO 
+    global xbala2,ybala2,angulo2,vida1,xheroe2,xheroe,yheroe2,yheroe,angulo1,xbala1,ybala1,angulo1,bala2
     pygame.init()
+    
     campodebatalla= pygame.display.set_mode((1300,650))
     heroe= pygame.image.load("jugador-06.png")
     heroe2= pygame.image.load("jugador-02.png")
@@ -155,6 +167,7 @@ def juego():
                     angulo1 += 90
                     if angulo1 ==360:
                         angulo1=0
+            #SE TIENE EN CUENTA LOS EVENTOS QUE OCURREN EN EL TECLADO PARA MOVER AL JUGADOR 2
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_DOWN:
                     yheroe2 += 15
@@ -170,18 +183,19 @@ def juego():
                         angulo2=0
            
             
-        
+        #SE PINTA EN PANTALLA 
         marcador(font2,campodebatalla,vida1,vida2)
         heroe=pygame.transform.rotate(heroe, angulo1)
         heroe2=pygame.transform.rotate(heroe2, angulo2)
         campodebatalla.blit(bala,(xbala2+30,ybala2+25))
         campodebatalla.blit(bala,(xbala+30,ybala+25))
+        #SE LLAMAN A LAS FUNCIONES QUE CREAN LOS MOVIMIENTOS 
         balas1() 
         balas2()
+        
+        
         campodebatalla.blit(heroe2,(xheroe2,yheroe2))
         campodebatalla.blit(heroe, (xheroe, yheroe))
         pygame.display.flip()
         clock.tick(60)
 juego()
-
-
