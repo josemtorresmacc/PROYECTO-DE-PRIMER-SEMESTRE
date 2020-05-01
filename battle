@@ -63,13 +63,13 @@ def idd():#ES PARA QUE LA VIDA DEL HEROE BAJE CADA VEZ QUE EL ZOMBIE LO TOCA
     
     
 def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QUE TOQUE AL ZOMBIE LE BAJE VIDA
-    global xbala,ybala,angulo,bala,vidaz
+    global xbala,ybala,angulo,bala,vidaz,xzombie,yzombie,yheroe,xheroe
     if angulo==0: #ESTA CONDICION ES CUANDO EL ANGULO ES = 0
         xbala+=10
         if xbala>=1300:
             xbala=xheroe
             ybala=yheroe
-        if xbala==xzombie and( yzombie-40<=ybala and ybala<=yzombie+60)  :
+        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -105,7 +105,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala>=1300:
             xbala=xheroe  
             ybala=yheroe
-        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+60)  :
+        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
