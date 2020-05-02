@@ -69,7 +69,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala>=1300:
             xbala=xheroe
             ybala=yheroe
-        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if (xzombie<=xbala and xbala<=xzombie+11) and( yzombie<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -78,7 +78,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if ybala<=0:
             ybala=yheroe
             xbala=xheroe 
-        if ybala==yzombie and( xzombie-20<=xbala and xbala<=xzombie+40)  :
+        if (yzombie<=ybala and ybala<=yzombie+11) and( xzombie-20<=xbala and xbala<=xzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -87,7 +87,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala<=0:
             xbala=xheroe
             ybala=yheroe
-        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if (xzombie-11<=xbala and xbala<=xzombie) and( yzombie<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -96,7 +96,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if ybala>=650:
             ybala=yheroe
             xbala=xheroe 
-        if ybala==yzombie and( xzombie-20<=xbala and xbala<=xzombie+40)  :
+        if (yzombie<=ybala and ybala<=yzombie+11) and( xzombie-20<=xbala and xbala<=xzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -105,7 +105,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala>=1300:
             xbala=xheroe  
             ybala=yheroe
-        if xbala==xzombie and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if (xzombie<=xbala and xbala<=xzombie+11) and( yzombie<=ybala and ybala<=yzombie+40)  :
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
