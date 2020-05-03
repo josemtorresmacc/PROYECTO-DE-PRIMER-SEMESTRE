@@ -129,7 +129,7 @@ def PONG(): #INICIO DEL JUEGO PONG PARA UN SOLO JUGADOR
         texto("PONG", fuente, ligth_grey, screen, 20, 20)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.exit()
+                pygame.quit()
                 sys.exit()
             if event.type ==  pygame.KEYDOWN:
                 if event.type ==  pygame.K_ESCAPE:
@@ -573,15 +573,16 @@ def BATTLEPARADOS():#ACÁ INICIA EL JUEGO
         clock.tick(60)
 def MENÚPREINCIPAL():#SERÁ EL MENÚ DE OPCIONES
     while True:
-        global click
+        global click,font2
         screen.fill(bg_color)
         texto("Menú principal", fuente, ligth_grey, screen, 20, 20)
+        font2= pygame.font.Font(None,100)
         mx, my = pygame.mouse.get_pos()
 
-        Boton1 = pygame.Rect(50,100,200,50)
-        Boton2 = pygame.Rect(50,200,200,50)
-        Boton3 = pygame.Rect(50,300,200,50)
-        Boton4 = pygame.Rect(50,400,200,50)
+        Boton1 = pygame.Rect(50,100,450,80)
+        Boton2 = pygame.Rect(50,200,450,80)
+        Boton3 = pygame.Rect(50,300,450,80)
+        Boton4 = pygame.Rect(50,400,450,80)
 #        Boton4 = pygame.Rect(50,500,200,50)
         if Boton1.collidepoint((mx, my)):
             if click:
@@ -599,9 +600,17 @@ def MENÚPREINCIPAL():#SERÁ EL MENÚ DE OPCIONES
 #            if click:
 #                 snake()
         pygame.draw.rect(screen,ligth_grey,Boton1)
+        text_surface2 = font2.render("pong", True, (0,0,0))
+        screen.blit(text_surface2,( 50,100))
         pygame.draw.rect(screen,ligth_grey,Boton2)
+        text_surface3 = font2.render("pong de dos", True, (0,0,0))
+        screen.blit(text_surface3,( 50,200))
         pygame.draw.rect(screen,ligth_grey,Boton3)
+        text_surface4 = font2.render("battle", True, (0,0,0))
+        screen.blit(text_surface4,( 50,300))
         pygame.draw.rect(screen,ligth_grey,Boton4)
+        text_surface2 = font2.render("battle de dos", True, (0,0,0))
+        screen.blit(text_surface2,( 50,400))
         click=False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
