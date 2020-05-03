@@ -22,16 +22,16 @@ angulo1=0
 angulo2=180
 
 #ACÁ COMIENZAN LAS DEFINICIONES
-def marcador(font2,campodebatalla,vida1,vida2):
+def marcador(font2,screen,vida1,vida2):
     if vida2== 0:
        text_surface = font2.render("ganaste jugador 1", True, (0,0,0))
-       campodebatalla.blit(text_surface,(500 ,325))
+       screen.blit(text_surface,(500 ,325))
        pygame.display.flip()
        time.sleep(3)
        pygame.quit()
     if  vida1== 0:
        text_surface = font2.render("ganaste jugador 2", True, (0,0,0))
-       campodebatalla.blit(text_surface,(500 ,325))
+       screen.blit(text_surface,(500 ,325))
        pygame.display.flip()
        time.sleep(3)
        pygame.quit()   
@@ -110,7 +110,7 @@ def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala2<=0:
             xbala2=xheroe2
             ybala2=yheroe2
-        if (xheroe-11<=xbala2 and xbala2<=xheroe) and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
+        if (xheroe-11<=xbala2 and xbala2<=xheroe) and( yheroe-20<=ybala2 and ybala2<=yheroe+40)  :
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -136,20 +136,19 @@ def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
 def juego():#ACÁ INICIA EL JUEGO 
     global xbala2,ybala2,angulo2,vida1,xheroe2,xheroe,yheroe2,yheroe,angulo1,xbala1,ybala1,angulo1,bala2
     pygame.init()
-    
-    campodebatalla= pygame.display.set_mode((1300,650))
-    heroe= pygame.image.load("jugador-06.png")
-    heroe2= pygame.image.load("jugador-02.png")
-    bala=pygame.image.load("bala.png")
-    bala2=pygame.image.load("bala.png")
-    campodebatalla.fill((128,64,0), (0,0,1300,650))
-    campodebatalla.blit(heroe2,(xheroe2,yheroe2))
-    campodebatalla.blit(heroe,(xheroe,yheroe))
+    screen= pygame.display.set_mode((1300,650))
+    heroe= pygame.image.load("mago.png")
+    heroe2= pygame.image.load("mago 2.png")
+    bala=pygame.image.load("bola de fuego.png")
+    bala2=pygame.image.load("bola de fuego.png")
+    screen.fill((128,64,0), (0,0,1300,650))
+    screen.blit(heroe2,(xheroe2,yheroe2))
+    screen.blit(heroe,(xheroe,yheroe))
     clock = pygame.time.Clock()
     pygame.display.flip()   
     font2= pygame.font.Font(None,100)
     while True:    
-        campodebatalla.fill((125,64,0), (0,0,1300,650))  
+        screen.fill((125,64,0), (0,0,1300,650))  
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 pygame.quit()
@@ -184,18 +183,18 @@ def juego():#ACÁ INICIA EL JUEGO
            
             
         #SE PINTA EN PANTALLA 
-        marcador(font2,campodebatalla,vida1,vida2)
+        marcador(font2,screen,vida1,vida2)
         heroe=pygame.transform.rotate(heroe, angulo1)
         heroe2=pygame.transform.rotate(heroe2, angulo2)
-        campodebatalla.blit(bala,(xbala2+30,ybala2+25))
-        campodebatalla.blit(bala,(xbala+30,ybala+25))
+        screen.blit(bala,(xbala2+30,ybala2+25))
+        screen.blit(bala,(xbala+30,ybala+25))
         #SE LLAMAN A LAS FUNCIONES QUE CREAN LOS MOVIMIENTOS 
         balas1() 
         balas2()
         
         
-        campodebatalla.blit(heroe2,(xheroe2,yheroe2))
-        campodebatalla.blit(heroe, (xheroe, yheroe))
+        screen.blit(heroe2,(xheroe2,yheroe2))
+        screen.blit(heroe, (xheroe, yheroe))
         pygame.display.flip()
         clock.tick(60)
 juego()
