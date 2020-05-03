@@ -129,8 +129,7 @@ def PONG(): #INICIO DEL JUEGO PONG PARA UN SOLO JUGADOR
         texto("PONG", fuente, ligth_grey, screen, 20, 20)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                running=False
             if event.type ==  pygame.KEYDOWN:
                 if event.type ==  pygame.K_ESCAPE:
                     running = False        
@@ -183,8 +182,7 @@ def PONG_1vs1(): #INICIO DEL JUEGO PONG PARA DOS PERSONAS
         texto("PONG 1vs1", fuente, ligth_grey, screen, 20, 20)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                running=False
             if event.type ==  pygame.KEYDOWN:
                 if event.type ==  pygame.K_ESCAPE:
                     running = False
