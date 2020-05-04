@@ -42,8 +42,10 @@ white = (255, 255, 255)
 
 #IMÁGEN DE LA UNIVERSIDAD
 universidad = pygame.image.load("Escuela-ingenieria.png")
- 
-    #SE DEVINEN LAS VAIRABLES PARA BATTLE
+#IMAGEN DE LAS NSTRUCCONES
+UNO=pygame.image.load("1.png")
+DOS=pygame.image.load("2.png")
+    #SE DEVINEN LAS VAIRABLES PARA BATTLE Y BATTLE PARA DOS
 #POSICIONES
 xheroe=100
 yheroe=100
@@ -293,7 +295,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala>=1300:
             xbala=xheroe
             ybala=yheroe
-        if (xzombie<=xbala and xbala<=xzombie+11) and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if (xzombie<=xbala and xbala<=xzombie+11) and( yzombie<=ybala and ybala<=yzombie+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA LE ESTA DANDO AL ZOMBIE EN EL ANGULO 0
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -302,7 +304,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if ybala<=0:
             ybala=yheroe
             xbala=xheroe 
-        if (yzombie<=ybala and ybala<=yzombie+11) and( xzombie-20<=xbala and xbala<=xzombie+40)  :
+        if (yzombie<=ybala and ybala<=yzombie+11) and( xzombie-20<=xbala and xbala<=xzombie+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA LE ESTA DANDO AL ZOMBIE EN EL ANGULO 90
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -311,7 +313,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala<=0:
             xbala=xheroe
             ybala=yheroe
-        if (xzombie-11<=xbala and xbala<=xzombie) and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if (xzombie-11<=xbala and xbala<=xzombie) and( yzombie<=ybala and ybala<=yzombie+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA LE ESTA DANDO AL ZOMBIE EN EL ANGULO 180
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -320,7 +322,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if ybala>=650:
             ybala=yheroe
             xbala=xheroe 
-        if (yzombie<=ybala and ybala<=yzombie+11) and( xzombie-20<=xbala and xbala<=xzombie+40)  :
+        if (yzombie<=ybala and ybala<=yzombie+11) and( xzombie-20<=xbala and xbala<=xzombie+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA LE ESTA DANDO AL ZOMBIE EN EL ANGULO 270
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -329,7 +331,7 @@ def balas(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala>=1300:
             xbala=xheroe  
             ybala=yheroe
-        if (xzombie<=xbala and xbala<=xzombie+11) and( yzombie<=ybala and ybala<=yzombie+40)  :
+        if (xzombie<=xbala and xbala<=xzombie+11) and( yzombie<=ybala and ybala<=yzombie+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA LE ESTA DANDO AL ZOMBIE EN EL ANGULO 360
             xbala=xheroe
             ybala=yheroe
             vidaz-=1
@@ -398,18 +400,18 @@ def BATTLE ():#ACÁ COMIENZA EL JUEGO
         clock.tick(60)
 
 #ACÁ COMIENZAN LAS DEFINICIONES PARA BATTLE2
-def marcador(font2,screen,vida1,vida2):
+def marcador(font2,screen,vida1,vida2):#SIRVE PARA INDICAR QUE JUGADOR ES EL QUE GANO
     global running
     
     if vida2== 0:
-       text_surface = font2.render("ganaste jugador 1", True, (0,0,0))
-       screen.blit(text_surface,(400 ,325))
+       text_surface = font2.render("GANASTE MERLIN", True, (0,0,0))
+       screen.blit(text_surface,(300 ,325))
        pygame.display.flip()
        time.sleep(3)
        running=False
     if  vida1== 0:
-       text_surface = font2.render("ganaste jugador 2", True, (0,0,0))
-       screen.blit(text_surface,(400 ,325))
+       text_surface = font2.render("GANASTE MADAME MIM", True, (0,0,0))
+       screen.blit(text_surface,(250 ,325))
        pygame.display.flip()
        time.sleep(3)
        running=False  
@@ -422,7 +424,7 @@ def balas1(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ Q
         if xbala>=1300:
             xbala=xheroe
             ybala=yheroe
-        if (xheroe2<=xbala and xbala<=xheroe2+11) and( yheroe2<=ybala and ybala<=yheroe2+40)  :
+        if (xheroe2<=xbala and xbala<=xheroe2+11) and( yheroe2<=ybala and ybala<=yheroe2+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 1 LE ESTA DANDO AL HEROE2 EN EL ANGULO 0
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -431,7 +433,7 @@ def balas1(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ Q
         if ybala<=0:
             ybala=yheroe
             xbala=xheroe 
-        if (yheroe2<=ybala and ybala<=yheroe2+11) and( xheroe2-40<=xbala and xbala<=xheroe2+40)  :
+        if (yheroe2<=ybala and ybala<=yheroe2+11) and( xheroe2-40<=xbala and xbala<=xheroe2+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 1 LE ESTA DANDO AL HEROE2 EN EL ANGULO 90
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -440,7 +442,7 @@ def balas1(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ Q
         if xbala<=0:
             xbala=xheroe
             ybala=yheroe
-        if (xheroe2-11<=xbala and xbala<=xheroe2) and( yheroe2<=ybala and ybala<=yheroe2+40)  :
+        if (xheroe2-11<=xbala and xbala<=xheroe2) and( yheroe2<=ybala and ybala<=yheroe2+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 1 LE ESTA DANDO AL HEROE2 EN EL ANGULO 180
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -449,7 +451,7 @@ def balas1(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ Q
         if ybala>=650:
             ybala=yheroe
             xbala=xheroe 
-        if (yheroe2<=ybala and ybala<=yheroe2+11) and( xheroe2-40<=xbala and xbala<=xheroe2+40)  :
+        if (yheroe2<=ybala and ybala<=yheroe2+11) and( xheroe2-40<=xbala and xbala<=xheroe2+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 1 LE ESTA DANDO AL HEROE2 EN EL ANGULO 270
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -458,7 +460,7 @@ def balas1(): #SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ Q
         if xbala>=1300:
             xbala=xheroe  
             ybala=yheroe
-        if (xheroe2<=xbala and xbala<=xheroe2+11) and( yheroe2<=ybala and ybala<=yheroe2+40)  :
+        if (xheroe2<=xbala and xbala<=xheroe2+11) and( yheroe2<=ybala and ybala<=yheroe2+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 1 LE ESTA DANDO AL HEROE2 EN EL ANGULO 360
             xbala=xheroe
             ybala=yheroe
             vida2-=1
@@ -471,7 +473,7 @@ def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala2>=1300:
             xbala2=xheroe2
             ybala2=yheroe2
-        if (xheroe<=xbala2 and xbala2<=xheroe+11) and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
+        if (xheroe<=xbala2 and xbala2<=xheroe+11) and( yheroe<=ybala2 and ybala2<=yheroe+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 2 LE ESTA DANDO AL HEROE1 EN EL ANGULO 0
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -480,7 +482,7 @@ def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if ybala2<=0:
             ybala2=yheroe2
             xbala2=xheroe2
-        if (yheroe<=ybala2 and ybala2<=yheroe+11) and( xheroe-40<=xbala2 and xbala2<=xheroe+40)  :
+        if (yheroe<=ybala2 and ybala2<=yheroe+11) and( xheroe-40<=xbala2 and xbala2<=xheroe+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 2 LE ESTA DANDO AL HEROE1 EN EL ANGULO 90
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -489,7 +491,7 @@ def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala2<=0:
             xbala2=xheroe2
             ybala2=yheroe2
-        if (xheroe-11<=xbala2 and xbala2<=xheroe) and( yheroe-20<=ybala2 and ybala2<=yheroe+40)  :
+        if (xheroe-11<=xbala2 and xbala2<=xheroe) and( yheroe-20<=ybala2 and ybala2<=yheroe+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 2 LE ESTA DANDO AL HEROE1 EN EL ANGULO 180
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -498,7 +500,7 @@ def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if ybala2>=650:
             ybala2=yheroe2
             xbala2=xheroe2 
-        if (yheroe<=ybala2 and ybala2<=yheroe+11) and( xheroe-40<=xbala2 and xbala2<=xheroe+40)  :
+        if (yheroe<=ybala2 and ybala2<=yheroe+11) and( xheroe-40<=xbala2 and xbala2<=xheroe+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 2 LE ESTA DANDO AL HEROE1 EN EL ANGULO 270
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -507,7 +509,7 @@ def balas2():#SIRVE PARA DARLE MOVIMIENTO AL PROYECTIL; HACIENDO QUE CADA VEZ QU
         if xbala2>=1300:
             xbala2=xheroe2  
             ybala2=yheroe2
-        if (xheroe<=xbala2 and xbala2<=xheroe+11) and( yheroe<=ybala2 and ybala2<=yheroe+40)  :
+        if (xheroe<=xbala2 and xbala2<=xheroe+11) and( yheroe<=ybala2 and ybala2<=yheroe+40)  :#ESTE IF SIRVE PARA QUE EL SISTEMA SEPA SI LA BOLA DEL HEROE 2 LE ESTA DANDO AL HEROE1 EN EL ANGULO 360
             xbala2=xheroe2
             ybala2=yheroe2
             vida1-=1
@@ -575,11 +577,13 @@ def BATTLEPARADOS():#ACÁ INICIA EL JUEGO
         screen.blit(heroe, (xheroe, yheroe))
         pygame.display.update()
         clock.tick(60)
-def food_spawn():
-    food_pos = [random.randint(0,49)*10, random.randint(0,49)*10]
+        
+        #ACA INICIAN LAS DEFINICIONES PARA SNAKE
+def food_spawn():#ESTA FUNCION GENERA COMIDA A LO LARGO DEL MAPA
+    food_pos = [random.randint(0,123)*10, random.randint(0,64)*10]
     return food_pos
 
-def snake ():
+def snake ():#ACA INICIA EL JUEGO
     play_surface = pygame.display.set_mode((1300 , 650))
     fps = pygame.time.Clock()
     snake_pos = [100,50]
@@ -595,7 +599,7 @@ def snake ():
             if event.type == pygame.QUIT:
                 running = False
             
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:#ACA SPYDER OIE AL TECLADO
                 if event.key == pygame.K_RIGHT:
                     change = "RIGHT"
                 if event.key == pygame.K_LEFT:
@@ -605,7 +609,7 @@ def snake ():
                 if event.key == pygame.K_DOWN:
                     change = "DOWN"
         
-        if change == "RIGHT" and direction != "LEFT":
+        if change == "RIGHT" and direction != "LEFT":#ACA TRADUCIMOS LO QUE OIE SPYDER
             direction = "RIGHT"
         if change == "LEFT" and direction != "RIGHT":
             direction = "LEFT"
@@ -614,7 +618,7 @@ def snake ():
         if change == "UP" and direction != "DOWN":
             direction = "UP"
             
-        if direction == "RIGHT":
+        if direction == "RIGHT":#ACA LE DAMOS MOVIMIENTO 
             snake_pos[0] += 10
         if direction == "LEFT":
             snake_pos[0] -= 10
@@ -623,7 +627,7 @@ def snake ():
         if direction == "DOWN":
             snake_pos[1] += 10
             
-        snake_body.insert(0, list(snake_pos))
+        snake_body.insert(0, list(snake_pos))#ESTO ES PARA QUE EL SNAKE AUMENTE DE TAMAÑO
         if snake_pos == food_pos:
             food_pos = food_spawn()
             score += 1
@@ -632,11 +636,11 @@ def snake ():
                 
         play_surface.fill((0,0,0))
         
-        for posicion in snake_body:
+        for posicion in snake_body:#ACA SE DIBUJA EL SNAKE
             pygame.draw.rect(play_surface, (200,200,200), pygame.Rect(posicion[0], posicion[1], 10, 10))
         pygame.draw.rect(play_surface, (255,160,60), pygame.Rect(food_pos[0], food_pos[1], 10, 10))
         
-        if snake_pos[0] >=1300 or snake_pos[0]<=0:
+        if snake_pos[0] >=1300 or snake_pos[0]<=0:#CONDICIONALES PARA PERDER
             print("Game over! Score:{0}".format(score))
             running = False
         if snake_pos[1] >=650 or snake_pos[1]<=0:
@@ -650,7 +654,7 @@ def snake ():
         pygame.display.update()
         fps.tick(10)
         
-def tron ():
+def tron ():#ACA INICIA EL JUEGO TRON
     play_surface = pygame.display.set_mode((1300 , 650))
     fps = pygame.time.Clock()
     snake_pos = [100,50]
@@ -670,7 +674,7 @@ def tron ():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT:#ACA SE OIE AL JUGADOR1
                     change = "RIGHT"
                 if event.key == pygame.K_LEFT:
                     change = "LEFT"
@@ -678,7 +682,7 @@ def tron ():
                     change = "UP"
                 if event.key == pygame.K_DOWN:
                     change = "DOWN"
-                if event.key == pygame.K_d:
+                if event.key == pygame.K_d:#ACA SE OIE AL JUGADOR2
                     change2 = "RIGHT"
                 if event.key == pygame.K_a:
                     change2 = "LEFT"
@@ -687,7 +691,7 @@ def tron ():
                 if event.key == pygame.K_s:
                     change2 = "DOWN"
         
-        if change == "RIGHT" and direction != "LEFT":
+        if change == "RIGHT" and direction != "LEFT":#ACA SE INTERPRETA AL JUGADOR1
             direction = "RIGHT"
         if change == "LEFT" and direction != "RIGHT":
             direction = "LEFT"
@@ -696,7 +700,7 @@ def tron ():
         if change == "UP" and direction != "DOWN":
             direction = "UP"
         
-        if change2 == "RIGHT" and direction2 != "LEFT":
+        if change2 == "RIGHT" and direction2 != "LEFT":#ACA SE INTERPRETA AL JUGADOR2
             direction2 = "RIGHT"
         if change2 == "LEFT" and direction2 != "RIGHT":
             direction2 = "LEFT"
@@ -705,7 +709,7 @@ def tron ():
         if change2 == "UP" and direction2 != "DOWN":
             direction2 = "UP"
             
-        if direction == "RIGHT":
+        if direction == "RIGHT":#ACA LE DAMOS MOVIMIENTO AL JUGADOR1
             snake_pos[0] += 10
         if direction == "LEFT":
             snake_pos[0] -= 10
@@ -714,7 +718,7 @@ def tron ():
         if direction == "DOWN":
             snake_pos[1] += 10
         
-        if direction2 == "RIGHT":
+        if direction2 == "RIGHT":#ACA LE DAMOS MOVIMIENTO AL JUGADOR2
             snake_pos2[0] += 10
         if direction2 == "LEFT":
             snake_pos2[0] -= 10
@@ -723,14 +727,14 @@ def tron ():
         if direction2 == "DOWN":
             snake_pos2[1] += 10
         
-        snake_body.insert(0, list(snake_pos))
+        snake_body.insert(0, list(snake_pos))#ACA AGRANDAMOS AL JUGADOR1
         if snake_pos == food_pos:
             food_pos = food_spawn()
             score += 1
         else:
             snake_body.pop()
             
-        snake_body2.insert(0, list(snake_pos2))
+        snake_body2.insert(0, list(snake_pos2))#ACA AGRANDAMOS AL JUGADOR2
         if snake_pos2 == food_pos:
             food_pos = food_spawn()
             score += 1
@@ -739,13 +743,13 @@ def tron ():
                         
         play_surface.fill((0,0,0))
         
-        for posicion in snake_body:
+        for posicion in snake_body:#ACA DIBUJAMOS AL JUGADOR1
             pygame.draw.rect(play_surface, (0, 255, 255), pygame.Rect(posicion[0], posicion[1], 10, 10))
-        for posicion2 in snake_body2:
+        for posicion2 in snake_body2:#ACA DIBUJAMOS AL JUGADOR2
             pygame.draw.rect(play_surface, (127,255,0), pygame.Rect(posicion2[0], posicion2[1], 10, 10))
         pygame.draw.rect(play_surface, (255,160,60), pygame.Rect(food_pos[0], food_pos[1], 10, 10))
         
-        if snake_pos[0] >=1300 or snake_pos[0]<=0:
+        if snake_pos[0] >=1300 or snake_pos[0]<=0:#ACA DAMOS LA CONDICIONES PARA QUE PIERDA EL JUGADOR1
             print("Game over! Score:{0}".format(score))
             running = False
         if snake_pos[1] >=650 or snake_pos[1]<=0:
@@ -758,7 +762,7 @@ def tron ():
             print("Game over! Score:{0}".format(score))
             running = False
      
-        if snake_pos2[0] >=1300 or snake_pos2[0]<=0:
+        if snake_pos2[0] >=1300 or snake_pos2[0]<=0:#ACA DAMOS LA CONDICIONES PARA QUE PIERDA EL JUGADOR2
             print("Game over! Score:{0}".format(score))
             running = False
         if snake_pos2[1] >=650 or snake_pos2[1]<=0:
@@ -773,18 +777,25 @@ def tron ():
             
         pygame.display.update()
         fps.tick(10)
-def instucciones():
+def instucciones():#ACA DAMOS LAS INSTRUCCIONES EN IMAGENES
     global screen_height,screen_width,screen,mainclock
     running=True
     screen.fill((0,0,0),(0,0,1300,650))
-    screen.blit(universidad,(50,50))
+    screen.blit(UNO,(0,0))
     pygame.display.flip()
+    i=0#ESTE 0 ES PARA QUE AL AUMENTAR PASE DE IMAGEN
     while running:
-        screen.fill((250,250,250),(0,0,1300,650))
-        screen.blit(universidad,(50,50))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    i+=1
+                    pygame.display.flip()
+            if i==0:
+                screen.blit(DOS,(0,0))
+            if i==2:
+                running=False
     pygame.display.update()
     mainclock.tick(10)     
                     
@@ -796,9 +807,9 @@ def MENÚPRINCIPAL():#SERÁ EL MENÚ DE OPCIONES
         font2= pygame.font.Font(None,100)
         font= pygame.font.Font(None,42)
         font1= pygame.font.Font(None,40)
-        mx, my = pygame.mouse.get_pos()
+        mx, my = pygame.mouse.get_pos()#ESTO ES PARA SEGUIR AL PUNTERO
 
-        Boton1 = pygame.Rect(50,100,450,80)
+        Boton1 = pygame.Rect(50,100,450,80)#ACA DIBUJAMOS LOS BOTONES
         Boton2 = pygame.Rect(50,200,450,80)
         Boton3 = pygame.Rect(50,300,450,80)
         Boton4 = pygame.Rect(50,400,450,80)
@@ -807,7 +818,7 @@ def MENÚPRINCIPAL():#SERÁ EL MENÚ DE OPCIONES
         Boton7 = pygame.Rect(800,350,450,80)
         Boton8 = pygame.Rect(800,480,350,80)
         Boton9 = pygame.Rect(50,500,600,80)
-        if Boton1.collidepoint((mx, my)):
+        if Boton1.collidepoint((mx, my)):#ACA LE DAMOS EL QUE HACER SI LE DAN CLICK
             if click:
                 PONG()
         if Boton2.collidepoint((mx, my)):
@@ -828,7 +839,7 @@ def MENÚPRINCIPAL():#SERÁ EL MENÚ DE OPCIONES
         if Boton9.collidepoint((mx, my)):
             if click:
                  instucciones()
-        pygame.draw.rect(screen,black,Boton1)
+        pygame.draw.rect(screen,black,Boton1)#ACA LE DAMOS EL TITULO AL BOTON
         text_surface2 = font2.render("PONG", True, bg_color)
         screen.blit(text_surface2,( 50,100))
         pygame.draw.rect(screen,black,Boton2)
@@ -862,7 +873,7 @@ def MENÚPRINCIPAL():#SERÁ EL MENÚ DE OPCIONES
         screen.blit(text_surface2,( 50,500))
         
         click=False
-        for event in pygame.event.get():
+        for event in pygame.event.get():#LE DAMOS AL CLICK UN USO EN EL MENU
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
