@@ -773,8 +773,22 @@ def tron ():
             
         pygame.display.update()
         fps.tick(10)
-        
-def MENÚPREINCIPAL():#SERÁ EL MENÚ DE OPCIONES
+def instucciones():
+    global screen_height,screen_width,screen,mainclock
+    running=True
+    screen.fill((0,0,0),(0,0,1300,650))
+    screen.blit(universidad,(50,50))
+    pygame.display.flip()
+    while running:
+        screen.fill((250,250,250),(0,0,1300,650))
+        screen.blit(universidad,(50,50))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+    pygame.display.update()
+    mainclock.tick(10)     
+                    
+def MENÚPRINCIPAL():#SERÁ EL MENÚ DE OPCIONES
     while True:
         global click,font2
         screen.fill(black)
@@ -788,10 +802,11 @@ def MENÚPREINCIPAL():#SERÁ EL MENÚ DE OPCIONES
         Boton2 = pygame.Rect(50,200,450,80)
         Boton3 = pygame.Rect(50,300,450,80)
         Boton4 = pygame.Rect(50,400,450,80)
-        Boton5 = pygame.Rect(800,100,450,80)
-        Boton6 = pygame.Rect(800,200,450,80)
-        Boton7 = pygame.Rect(800,300,450,80)
-        Boton8 = pygame.Rect(800,425,350,80)
+        Boton5 = pygame.Rect(800,150,450,80)
+        Boton6 = pygame.Rect(800,250,450,80)
+        Boton7 = pygame.Rect(800,350,450,80)
+        Boton8 = pygame.Rect(800,480,350,80)
+        Boton9 = pygame.Rect(50,500,600,80)
         if Boton1.collidepoint((mx, my)):
             if click:
                 PONG()
@@ -810,6 +825,9 @@ def MENÚPREINCIPAL():#SERÁ EL MENÚ DE OPCIONES
         if Boton6.collidepoint((mx, my)):
             if click:
                  tron()
+        if Boton9.collidepoint((mx, my)):
+            if click:
+                 instucciones()
         pygame.draw.rect(screen,black,Boton1)
         text_surface2 = font2.render("PONG", True, bg_color)
         screen.blit(text_surface2,( 50,100))
@@ -824,21 +842,24 @@ def MENÚPREINCIPAL():#SERÁ EL MENÚ DE OPCIONES
         screen.blit(text_surface2,( 50,400))
         pygame.draw.rect(screen,black,Boton5)
         text_surface2 = font2.render("SNAKE", True, bg_color)
-        screen.blit(text_surface2,( 800,100))
+        screen.blit(text_surface2,( 800,150))
         pygame.draw.rect(screen,black,Boton6)
         text_surface2 = font2.render("TRON", True, bg_color)
-        screen.blit(text_surface2,( 800,200))
+        screen.blit(text_surface2,( 800,250))
         pygame.draw.rect(screen,black,Boton7)
         text_surface3 = font1.render("AUTORES:", True, bg_color)
         text_surfacejav = font.render("Javier Santiago Useche Acosta",True, bg_color)
         text_surfacejos = font.render("José Miguel Torres Lara", True, bg_color)
         text_surfacejua = font.render("Juan Fernando Rojas Santiago", True, bg_color)
-        screen.blit(text_surface3,( 800,300))
-        screen.blit(text_surfacejav,(800,330))
-        screen.blit(text_surfacejos,(800,360))
-        screen.blit(text_surfacejua,(800,390))
+        screen.blit(text_surface3,( 800,350))
+        screen.blit(text_surfacejav,(800,380))
+        screen.blit(text_surfacejos,(800,410))
+        screen.blit(text_surfacejua,(800,440))
         pygame.draw.rect(screen,black,Boton8)
-        screen.blit(universidad,(800,400))
+        screen.blit(universidad,(800,460))
+        pygame.draw.rect(screen,black,Boton9)
+        text_surface2 = font2.render("INSTRUCCIONES", True, bg_color)
+        screen.blit(text_surface2,( 50,500))
         
         click=False
         for event in pygame.event.get():
@@ -854,5 +875,4 @@ def MENÚPREINCIPAL():#SERÁ EL MENÚ DE OPCIONES
                     click = True
         pygame.display.update()
         mainclock.tick(60)
-        
-MENÚPREINCIPAL()
+MENÚPRINCIPAL()
